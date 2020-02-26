@@ -1,7 +1,7 @@
 import cv2
 
 image = cv2.imread('img/imagem.png')
-cascadeVersion = '0.1'
+cascadeVersion = '0.4'
 
 classifier = cv2.CascadeClassifier('haarcascadeXml/cascadeV' + cascadeVersion + '.xml')
 imageGray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -14,6 +14,6 @@ for (x,y,l,a) in deteccoes:
 qtdDetectados = str(len(deteccoes)) + 'Detectados'
 print(qtdDetectados)
 
-cv2.imwrite( "img/"+qtdDetectados+".jpg", image )
+cv2.imwrite( "img/V" + cascadeVersion +"-" +qtdDetectados+".jpg", image )
 cv2.waitKey(0)
 cv2.destroyAllWindows()
