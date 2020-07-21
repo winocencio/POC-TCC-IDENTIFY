@@ -1,19 +1,23 @@
 import cv2
+import glob
 
-image = cv2.imread('img/imagem.jpg')
-cascadeVersion = '0.2.1'
+cascadeVersion = '0.3.2'
+images_name = [img for img in glob.glob("img/original/imagem*")]
 
-classifier = cv2.CascadeClassifier('haarcascadeXml/cascadeV' + cascadeVersion + '.xml')
-imageGray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+for image_i in images_name:
 
-deteccoes = classifier.detectMultiScale(imageGray)
+    image = cv2.imread(image_i)
+    classifier = cv2.CascadeClassifier('haarcascadeXml/cascadeV' + cascadeVersion + '.xml')
+    imageGray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-for (x,y,l,a) in deteccoes:
-    cv2.rectangle(image, (x,y), (x + l , y + a), (0,255,0),2)
+    deteccoes = classifier.detectMultiScale(imageGray)
 
-qtdDetectados = str(len(deteccoes)) + 'Detectados'
-print(qtdDetectados)
+    for (x,y,l,a) in deteccoes:
+        cv2.rectangle(image, (x,y), (x + l , y + a), (0,255,0),2)
 
-cv2.imwrite( "img/V" + cascadeVersion +"-" +qtdDetectados+".jpg", image )
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    qtdDetectados = str(len(deteccoes)) + 'Detectados'
+    print(qtdDetectados)
+
+    cv2.imwrite( "img/resultados/V" + cascadeVersion +"-" + qtdDetectados +  ".jpg", image )
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
