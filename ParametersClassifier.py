@@ -11,6 +11,8 @@ class ParametersClassifier:
     def getDict(self):
         return self.__dict__
 
+# print(ParametersClassifier(1.1,1,(30,30),(40,40),0).getDict())
+
 def getParametrosVariados():
     scaleFactorList = ['0.8','0.9','1.0','1.1','1.2','1.3','1.4','1.5']
     minNeighborsList = ['0','1','2','3','4','5']
@@ -27,4 +29,5 @@ def getParametrosVariados():
                         returnList.append( ParametersClassifier(scaleFactor,minNeighbors,minSize,maxSize,flags))
     return returnList
 
-getParametrosVariados()
+
+
